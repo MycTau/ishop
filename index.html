@@ -42,7 +42,7 @@
 
             <br>
 
-            <router-view v-bind:goods="goods" v-bind:categories="categories"></router-view>
+            <router-view v-on:category-form-submited="categoryFormSubmited" v-bind:goods="goods" v-bind:categories="categories"></router-view>
 
         </div>
 
@@ -67,7 +67,8 @@
     const ishop_routes = [
         { name:'dashboard', path: '/', component: DASHBOARD},
         { name:'goods-list', path: '/goods', component: GOODS_LIST},
-        { name:'categories-list', path: '/categories', component: CATEGORIES_LIST}
+        { name:'categories-list', path: '/categories', component: CATEGORIES_LIST},
+        { name:'category-form', path: '/categories/:id/edit', component: CATEGORY_FORM, props: true}
 
     ];
 
@@ -100,6 +101,13 @@
                     default: return this.$route.name
                 }
             }
+        },
+        methods: {
+          categoryFormSubmited: function (data) {
+              console.log('categoryFormSubmited: ', data)
+              //Обновляем данные в массиве Categories
+              this.$router.push({name: 'categories-list'})
+          }
         }
     })
 </script>
