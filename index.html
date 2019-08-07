@@ -1,47 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="custom.css">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <title>Document</title>
-    <script src="js/categories-list.js"></script>
-    <script src="js/category-form.js"></script>
-    <script src="js/dashboard.js"></script>
-    <script src="js/goods-list.js"></script>
-    <link rel="stylesheet" href="css/custom.css">
+    <script src="goods-list.js"></script>
+    <script src="categories-list.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="category-form.js"></script>
+    <script src="good-form.js"></script>
 </head>
-<body>
 
+<body>
 <div id="app">
     <div class="container">
-        <div class="row">
-            <div class="col-md-3 main-menu">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a v-on:click="menuItemClick('goods')" class="nav-link active" href="#">Товары</a>
-                    </li>
-                    <li class="nav-item">
-                        <a v-on:click="menuItemClick('categories')" class="nav-link" href="#">Категории</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-9">
+    <div class="row">
 
-                <div class="section-header">
-                    <h3>{{ sectionName }}</h3>
-                </div>
-                <dashboard v-if="current_section === 'dashboard'"></dashboard>
-                <goods-list v-if="current_section === 'goods'"></goods-list>
-                <categories-list v-if="current_section === 'categories'" v-bind:categories="categories"></categories-list>
-            </div>
+        <div class="col-md-3 main-menu">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a v-on:click="menuItemClick('goods')" class="nav-link active" href="#">Товары</a>
+                </li>
+                <li class="nav-item">
+                    <a v-on:click="menuItemClick('categories')" class="nav-link" href="#">Категории</a>
+                </li>
+            </ul>
         </div>
+
+        <div class="col-md-9">
+            <div class="section-header">
+                <h3>{{sectionName}}</h3>
+            </div>
+            <dashboard v-if="current_section === 'dashboard'"></dashboard>
+            <goods-list v-bind:goods="goods" v-if="current_section === 'goods'"></goods-list>
+            <categories-list v-bind:categories="categories" v-if="current_section === 'categories'"></categories-list>
+        </div>
+
     </div>
 </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -55,33 +57,33 @@
 
 
 <script>
-    var app = new Vue({
-        el: "#app",
+    var app = new Vue ({
+        el: '#app',
         data: {
-            current_section: 'categories',
+            current_section: 'dashboard',
+            goods: [
+                {id: 1, name: 'Брюки мужские', qty: 35, price: 2650},
+                {id: 2, name: 'Платье женское', qty: 13, price: 7500},
+                {id: 3, name: 'Кеды', qty: 44, price: 1650}
+            ],
             categories: [
                 {id: 1, name: 'Одежда мужская', status: 'active'},
                 {id: 2, name: 'Одежда женская', status: 'active'},
-                {id: 3, name: 'Обувь', status: 'active'},
+                {id: 3, name: 'Обувь', status: 'active'}
             ]
         },
         computed: {
             sectionName: function () {
-                switch (this.current_section) {
-                    case 'goods':  // if (x === 'value1')
-                        return 'Товары';
-                    case 'categories':  // if (x === 'value2')
-                        return 'Категории';
-                    case 'dashboard':
-                        return '';
-                    default:
-                        return this.current_section
+                switch (this.current_section)  {
+                    case 'goods': return "Товары"
+                    case 'categories': return "Категории"
+                    case 'dashboard': return ""
+                    default: return this.current_section
                 }
             }
         },
         methods: {
             menuItemClick: function (section) {
-                // console.log(section);
                 this.current_section = section
             }
         }

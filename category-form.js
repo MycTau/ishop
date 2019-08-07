@@ -2,17 +2,16 @@ Vue.component('category-form', {
     template: `
 <div>
     <label>Наименование</label>
-    <input v-model="name">
-    <br>
+    <input type="text" v-model="name"><br>
     <label>Статус</label>
-    <input v-model="status">
-    </div>
+    <input type="text" v-model="status">
+</div> 
     `,
-    props: {object: {default: {} } },
+    props: {object:{default:{}}},
     data: function () {
         return {
-            name:null,
-            status:null
+            name: null,
+            status: null
         }
     },
     created: function () {
@@ -25,8 +24,8 @@ Vue.component('category-form', {
     },
     methods: {
         fillForm: function () {
-            this.name = this.object.name;
+            this.name = this.object.name
             this.status = this.object.status
         }
     }
-});
+})
