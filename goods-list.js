@@ -1,4 +1,4 @@
-Vue.component('goods-list', {
+const GOODS_LIST = {
     template: `
 <div>
     <table class="table">
@@ -11,6 +11,7 @@ Vue.component('goods-list', {
             <th scope="col">Цена</th>
         </tr>
         </thead>
+        
         <tbody>
         <tr v-for="good in goods">
             <th scope="row">{{good.id}}</th>
@@ -41,4 +42,6 @@ Vue.component('goods-list', {
                 this.editing_good_id = id
             }
     }
-})
+}
+
+Vue.component('goods-list', GOODS_LIST)

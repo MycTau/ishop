@@ -1,4 +1,5 @@
-Vue.component('dashboard', {
+const DASHBOARD = {
+
     template: `
         <div class="widgets-container">
             <div class="card">
@@ -18,4 +19,6 @@ Vue.component('dashboard', {
         </div>
             
     `
-})
+}
+
+Vue.component('dashboard', DASHBOARD)
