@@ -1,5 +1,4 @@
 const DASHBOARD = {
-
     template: `
         <div class="widgets-container">
             <div class="card">

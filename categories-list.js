@@ -18,17 +18,14 @@ const CATEGORIES_LIST = {
                 <td>0</td>
                 <td>{{category.status}}</td>
                 <td>
-                
-                <router-link v-bind:to="{name: 'category-form', params: {id: category.id, object: category}}">
-                <div class="btn btn-danger btn-sm">Редактировать</div>
-                </router-link>
-                
+                    <router-link v-bind:to="{name: 'category-form', params: {id: category.id, object: category}}">
+                        <div class="btn btn-danger btn-sm">Редактировать</div>
+                    </router-link>
                 </td>
             </tr>
         </tbody>
     </table>
     <router-link to="/" class="nav-link">На главную</router-link>
-
     <category-form v-if="editing_category_id" v-bind:object="editingCategory"></category-form>
 </div>
     `,
@@ -48,4 +45,5 @@ const CATEGORIES_LIST = {
         }
     }
 }
+
 Vue.component('categories-list', CATEGORIES_LIST)
